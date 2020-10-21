@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "group-buy": "/components/group-buy/group-buy"
+  }
+}
