@@ -1,15 +1,7 @@
 <template>
 	<view class="content">
-		<view class="leader-box">
-			<view class="leader-box-left">
-				<text style="font-size: 36rpx; line-height: 36rpx;">{{leader.leaderAddress}} > </text>
-				<text>{{leader.addressDetail}}</text>
-			</view>
-			<view class="leader-box-right">
-				<image src="../static/logo.png" mode=""></image>
-				<text>{{leader.leaderName}}</text>
-			</view>
-		</view>
+		
+		<leader-box :leader="leader"></leader-box>
 		
 		<input class="search" type="text" value="" placeholder="搜索商品"/>
 		
@@ -22,13 +14,19 @@
 		>
 			<swiper-item v-for="item in bannerList">
 				<!-- <view class="swiper-item"> -->
-					<image :src="item" mode=""></image>
+					<image :src="item" mode="scaleToFill"></image>
 				<!-- </view> -->
 			</swiper-item>
 		</swiper>
 		
 		<seckill :seckillDetail="seckillDetail" :seckillList="seckillList"></seckill>
+		
+		<view style="width: 100%; height: 20rpx;"></view>
+		
+		<map style="width: 100%; height: 300px;" :latitude="latitude" :longitude="longitude" :markers="covers"></map>
+		
 		<group-buy :groupData="groupData"></group-buy>
+		
 		<view class="share-btn" style="bottom: 33vw; margin-right: 20rpx;">
 			<image  src="../../../static/share.png" mode=""></image>
 			<text>分享</text>
@@ -43,6 +41,7 @@
 <script>
 	import groupBuy from '@/components/group-buy/group-buy.vue';
 	import seckill from '@/components/seckill/seckill.vue';
+	import leaderBox from '@/components/leader-box/leader-box.vue';
 	export default {
 		data() {
 			return {
@@ -134,7 +133,8 @@
 		},
 		components:{
 			groupBuy,
-			seckill
+			seckill,
+			leaderBox
 		},
 		onLoad() {
 
@@ -152,45 +152,12 @@
 		height: 100%;
 		margin: 0 2.5vw;
 	}
-	.leader-box {
-		display: flex;
-		justify-content: space-between;
-		.leader-box-left {
-			height: 130rpx;
-			display: flex;
-			justify-content: space-around;
-			flex-direction: column;
-			font-size: 24rpx;
-			line-height: 24rpx;
-		}
-		.leader-box-right {
-			height: 130rpx;
-			display: flex;
-			justify-content: space-around;
-			flex-direction: column;
-			font-size: 28rpx;
-			line-height: 28rpx;
-			text-align: center;
-			image {
-				width: 10vw;
-				height: 10vw;
-				border-radius: 50%;
-				background-color: red;
-			}
-			text {
-				margin-top: 10rpx;
-			}
-		}
-	}
 	.search {
 		width: 95vw;
 		margin: 10rpx 0;
-		border-top-left-radius: 40rpx;
-		border-top-right-radius: 40rpx;
-		border-bottom-left-radius: 40rpx;
-		border-bottom-right-radius: 40rpx;
+		border-radius: 40rpx;
 		height: 60rpx;
-		background-color: red;
+		background-color: #bdc1c1;
 		text-align: center;
 	}
 	.banner {
@@ -199,6 +166,11 @@
 		swiper-item {
 			border-radius: 20rpx;
 			background-color: #007AFF;
+			image {
+				width: 100%;
+				height: 100%;
+				border-radius: 20rpx;
+			}
 		}
 	}
 	

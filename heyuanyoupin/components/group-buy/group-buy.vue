@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-for="(item,index) in groupData" :key="item" class="group-box">
+		<navigator v-for="(item,index) in groupData" :key="item" class="group-box" hover-class="none" open-type="switchTab" url="/pages/tabBar/classify/classify">
 			<view class="group-box-left">
 				<image class="img" src="../../static/logo.png" mode=""></image>
 			</view>
@@ -20,7 +20,7 @@
 				</view>
 				
 			</view>
-		</view>
+		</navigator>
 	</view>
 </template>
 
