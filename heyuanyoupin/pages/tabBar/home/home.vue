@@ -2,12 +2,12 @@
 	<view class="content">
 		<view class="leader-box">
 			<view class="leader-box-left">
-				<text style="font-size: 36rpx; line-height: 36rpx;">{{leaderAddress}} > </text>
-				<text>{{addressDetail}}</text>
+				<text style="font-size: 36rpx; line-height: 36rpx;">{{leader.leaderAddress}} > </text>
+				<text>{{leader.addressDetail}}</text>
 			</view>
 			<view class="leader-box-right">
 				<image src="../static/logo.png" mode=""></image>
-				<text>{{leaderName}}</text>
+				<text>{{leader.leaderName}}</text>
 			</view>
 		</view>
 		
@@ -20,81 +20,15 @@
 		:interval="3000" 
 		:duration="1000"
 		>
-			<swiper-item>
-				<view class="swiper-item"></view>
-			</swiper-item>
-			<swiper-item>
-				<view class="swiper-item"></view>
+			<swiper-item v-for="item in bannerList">
+				<!-- <view class="swiper-item"> -->
+					<image :src="item" mode=""></image>
+				<!-- </view> -->
 			</swiper-item>
 		</swiper>
 		
-		<view class="kill">
-			<view class="kill-title">
-				<text class="kill-title-left">限时秒杀</text>
-				<text class="kill-title-right">仅剩{{killDay}}天 {{killDate}}</text>
-			</view>
-			<scroll-view 
-			scroll-x="true" 
-			class="kill-scroll" 
-			show-scrollbar="true"
-			style=" white-space: nowrap; display: flex"
-			>
-				<view class="sku-box">
-					<image class="sku-img" src="../../../static/logo.png" mode=""></image>
-					<view class="sku-name"> {{addressDetail}} </view>
-					<view class="price-box">
-						<text class="price">¥198.00</text>
-						<image class="buy" src="../../../static/logo.png" mode=""></image>
-					</view>
-				</view>
-				<view class="sku-box">
-					<image class="sku-img" src="../../../static/logo.png" mode=""></image>
-					<view class="sku-name"> {{addressDetail}} </view>
-					<view class="price-box">
-						<text class="price">¥198.00</text>
-						<image class="buy" src="../../../static/logo.png" mode=""></image>
-					</view>
-				</view>
-				<view class="sku-box">
-					<image class="sku-img" src="../../../static/logo.png" mode=""></image>
-					<view class="sku-name"> {{addressDetail}} </view>
-					<view class="price-box">
-						<text class="price">¥198.00</text>
-						<image class="buy" src="../../../static/logo.png" mode=""></image>
-					</view>
-				</view>
-				<view class="sku-box">
-					<image class="sku-img" src="../../../static/logo.png" mode=""></image>
-					<view class="sku-name"> {{addressDetail}} </view>
-					<view class="price-box">
-						<text class="price">¥198.00</text>
-						<image class="buy" src="../../../static/logo.png" mode=""></image>
-					</view>
-				</view>
-			</scroll-view>
-		</view>
+		<seckill :seckillDetail="seckillDetail" :seckillList="seckillList"></seckill>
 		<group-buy :groupData="groupData"></group-buy>
-		<!-- <view v-for="(item,index) in groupData" :key="item" class="group-box">
-			<view class="group-box-left">
-				<image class="img" src="../../../static/logo.png" mode=""></image>
-			</view>
-			<view class="group-box-right">
-				<view class="text-box">
-					<text class="group-title"> {{item.title}} </text>
-					<text class="group-label">{{item.label}}</text>
-					<text class="group-num"> {{item.group_num}} </text>
-					<text class="group-label"> 已拼{{item.had_buy_num}}件 </text>
-				</view>
-				<view class="price-box">
-					<text class="price"> ¥{{item.price}} </text>
-					<view class="label-price">
-						<text> ¥{{item.label_price}} </text>
-					</view>
-					<button class="btn" type="default"> 去拼团 </button>
-				</view>
-				
-			</view>
-		</view> -->
 		<view class="share-btn" style="bottom: 33vw; margin-right: 20rpx;">
 			<image  src="../../../static/share.png" mode=""></image>
 			<text>分享</text>
@@ -108,15 +42,59 @@
 
 <script>
 	import groupBuy from '@/components/group-buy/group-buy.vue';
+	import seckill from '@/components/seckill/seckill.vue';
 	export default {
 		data() {
 			return {
-				leaderAddress: '佛山_保利心语花园',
-				addressDetail: '广东省佛山市南海区桂城街道保利西雅图三期',
-				leaderName: '卢毅',
-				leaderImg: '',
-				killDay: '20',
-				killDate: '05:25:17',
+				leader: {
+					leaderAddress: '佛山_保利心语花园',
+					addressDetail: '广东省佛山市南海区桂城街道保利西雅图三期',
+					leaderName: '卢毅',
+					leaderImg: ''
+				},
+				bannerList: [
+					'https://ruiyinqing.oss-cn-shenzhen.aliyuncs.com/upload/015c0ba6812ed7b846f130dd3d2bf1b7.png',
+					'https://ruiyinqing.oss-cn-shenzhen.aliyuncs.com/upload/015c0ba6812ed7b846f130dd3d2bf1b7.png',
+					'https://ruiyinqing.oss-cn-shenzhen.aliyuncs.com/upload/015c0ba6812ed7b846f130dd3d2bf1b7.png',
+					'https://ruiyinqing.oss-cn-shenzhen.aliyuncs.com/upload/015c0ba6812ed7b846f130dd3d2bf1b7.png',
+					'https://ruiyinqing.oss-cn-shenzhen.aliyuncs.com/upload/015c0ba6812ed7b846f130dd3d2bf1b7.png'
+				],
+				seckillDetail: {
+					seckillDay: '20',
+					seckillDate: '05:25:17'
+				},
+				seckillList: [
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					},
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					},
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					},
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					},
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					},
+					{
+						img_url: '',
+						sku_name: '港荣蒸蛋糕港荣蒸蛋糕港荣蒸蛋糕',
+						price: 139.00
+					}
+				],
 				groupData: [
 					{
 						img:'',
@@ -154,15 +132,17 @@
 				]
 			}
 		},
-		comments:{
-			groupBuy
+		components:{
+			groupBuy,
+			seckill
 		},
 		onLoad() {
 
 		},
 		methods: {
 
-		}
+		},
+		
 	}
 </script>
 
@@ -221,146 +201,7 @@
 			background-color: #007AFF;
 		}
 	}
-	.kill {
-		margin-top: 40rpx;
-		.kill-title {
-			display: flex;
-			justify-content: space-between;
-			.kill-title-left {
-				border-left: solid #fc1316 10rpx;
-				padding-left: 10rpx;
-				font-size: 36rpx;
-			}
-			.kill-title-right {
-				font-size: 28rpx;
-			}
-		}
-		.kill-scroll {
-			height: 380rpx;
-			// background-color: #4CD964;
-			.sku-box {
-				display: inline-block;
-				width: 220rpx;
-				// height: 300rpx;
-				text-align: center;
-				margin: 40rpx 20rpx 0 20rpx;
-				// background-color: #999999;
-				.sku-img {
-					width: 220rpx;
-					height: 220rpx;
-				}
-				.sku-name {
-					width: 220rpx;
-					height: 30rpx;
-					margin: 15rpx 0;
-					line-height: 30rpx;
-					font-size: 30rpx;
-					overflow: hidden;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-				}
-				.price-box {
-					display: flex;
-					justify-content: space-between;
-					// width: 200rpx;
-					height: 40rpx;
-					.price {
-						color: red;
-					}
-					.buy {
-						width: 40rpx;
-						height: 40rpx;
-					}
-				}
-			}
-		}
-	}
 	
-	// .group-box {
-	// 	display: flex;
-	// 	width: 100%;
-	// 	height: 240rpx;
-	// 	margin-top: 20rpx;
-	// 	padding: 20rpx 0;
-	// 	border-bottom: solid 2rpx #b0b4b4;
-	// 	.group-box-left {
-	// 		margin: 0 20rpx;
-	// 		width: 240rpx;
-	// 		height: 240rpx;
-	// 		.img {
-	// 			width: 240rpx;
-	// 			height: 240rpx;
-	// 		}
-	// 	}
-	// 	.group-box-right {
-	// 		width: 420rpx;
-	// 		display: flex;
-	// 		flex-direction: column;
-			
-	// 		.text-box {
-	// 			display: flex;
-	// 			flex-direction: column;
-	// 			.group-title {
-	// 				font-size: 34rpx;
-	// 				height: 40rpx;
-	// 				line-height: 40rpx;
-	// 				color: #000000;
-	// 				overflow: hidden;
-	// 				text-overflow: ellipsis;
-	// 				white-space: nowrap;
-	// 			}
-	// 			.group-label {
-	// 				font-size: 28rpx;
-	// 				height: 50rpx;
-	// 				line-height: 50rpx;
-	// 				color: #808080;
-	// 				overflow: hidden;
-	// 				text-overflow: ellipsis;
-	// 				white-space: nowrap;
-					
-	// 			}
-	// 			.group-num {
-	// 				width: 60rpx;
-	// 				padding: 0 10rpx;
-	// 				border: solid 2px red;
-	// 				font-size: 22rpx;
-	// 				color: red;
-	// 			}
-	// 		}
-	// 		.price-box {
-	// 			width: 420rpx;
-	// 			display: flex;
-	// 			flex-direction: row;
-	// 			justify-content: space-between;
-				
-	// 			.price {
-	// 				font-size: 50rpx;
-	// 				line-height: 60rpx;
-	// 				color: red;
-	// 			}
-	// 			.label-price {
-	// 				width: 150rpx;
-	// 				position: relative;
-	// 				color: #808080;
-	// 				text-decoration: line-through;
-	// 				text {
-	// 					position: absolute;
-	// 					left: 10rpx;
-	// 					bottom: 0;
-	// 				}
-	// 			}
-	// 			.btn {
-	// 				height: 60rpx;
-	// 				line-height: 60rpx;
-	// 				font-size: 26rpx;
-	// 				color: #FFFFFF;
-	// 				background-color: red;
-	// 				border-radius: 40rpx;
-	// 			}
-	// 		}
-			
-	// 	}
-	// }
 	
 	.share-btn {
 		position: fixed;

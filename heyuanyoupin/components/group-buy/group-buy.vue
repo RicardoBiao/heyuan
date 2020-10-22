@@ -2,7 +2,7 @@
 	<view>
 		<view v-for="(item,index) in groupData" :key="item" class="group-box">
 			<view class="group-box-left">
-				<image class="img" src="../../../static/logo.png" mode=""></image>
+				<image class="img" src="../../static/logo.png" mode=""></image>
 			</view>
 			<view class="group-box-right">
 				<view class="text-box">
