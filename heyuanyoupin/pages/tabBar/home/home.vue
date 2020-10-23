@@ -3,7 +3,7 @@
 		
 		<leader-box :leader="leader"></leader-box>
 		
-		<input class="search" type="text" value="" placeholder="搜索商品"/>
+		<input class="search" type="text" confirm-type="search" @confirm="searchKeyWord()" value="" placeholder="搜索商品"/>
 		
 		<swiper 
 		class="banner"
@@ -22,8 +22,6 @@
 		<seckill :seckillDetail="seckillDetail" :seckillList="seckillList"></seckill>
 		
 		<view style="width: 100%; height: 20rpx;"></view>
-		
-		<map style="width: 100%; height: 300px;" :latitude="latitude" :longitude="longitude" :markers="covers"></map>
 		
 		<group-buy :groupData="groupData"></group-buy>
 		
@@ -140,7 +138,9 @@
 
 		},
 		methods: {
-
+			searchKeyWord() {
+				
+			},
 		},
 		
 	}
