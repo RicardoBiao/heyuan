@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<navigator v-for="(item,index) in groupData" :key="item" class="group-box" hover-class="none" open-type="switchTab" url="/pages/tabBar/classify/classify">
+		<navigator v-for="(item,index) in groupData" :key="index" class="group-box" :class="{hide : index > 1}" hover-class="none" open-type="switchTab" url="/pages/tabBar/classify/classify">
 			<view class="group-box-left">
 				<image class="img" src="../../static/logo.png" mode=""></image>
 			</view>
@@ -21,6 +21,9 @@
 				
 			</view>
 		</navigator>
+		<view class="look-All">
+			查看全部>
+		</view>
 	</view>
 </template>
 
@@ -51,6 +54,7 @@
 </script>
 
 <style lang="less">
+	
 	.group-box {
 		display: flex;
 		width: 100%;
@@ -58,6 +62,9 @@
 		margin-top: 20rpx;
 		padding: 20rpx 0;
 		border-bottom: solid 2rpx #b0b4b4;
+		&.hide {
+			display: none;
+		}
 		.group-box-left {
 			margin: 0 20rpx;
 			width: 240rpx;
@@ -117,11 +124,11 @@
 					width: 150rpx;
 					position: relative;
 					color: #808080;
-					text-decoration: line-through;
 					text {
 						position: absolute;
 						left: 10rpx;
 						bottom: 0;
+						text-decoration: line-through;
 					}
 				}
 				.btn {
@@ -135,6 +142,12 @@
 			}
 			
 		}
+	}
+	.look-All {
+		width: 100%;
+		height: 80rpx;
+		line-height: 80rpx;
+		text-align: center;
 	}
 
 </style>
