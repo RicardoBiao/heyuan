@@ -31,10 +31,10 @@
 		<view class="panic-buying-box">
 			<image class="top-img" src="../../../static/logo.png" mode=""></image>
 			<view class="btn-box">
-				<view style="transform-origin: bottom left; margin-left: 20rpx;" class="btn">
+				<view style="margin-left: 20rpx;" class="btn-left">
 					正在抢购
 				</view>
-				<view style="transform-origin: bottom right; margin-left: 30rpx;" class="btn">
+				<view style="margin-left: 30rpx;" class="btn-right">
 					即将开抢
 				</view>
 			</view>
@@ -79,33 +79,6 @@
 				</view>
 			</view>
 		</view>
-		
-		<nav>
-			<a href="#">Home</a>
-			<a href="#" class="selected">Projects</a>
-			<a href="#">About</a>
-		</nav>
-		<main>
-			Content area
-		</main>
-		
-		<nav class="left">
-			<a href="#">Home</a>
-			<a href="#" class="selected">Projects</a>
-			<a href="#">About</a>
-		</nav>
-		<main>
-			Content area
-		</main>
-		
-		<nav class="right">
-			<a href="#">Home</a>
-			<a href="#" class="selected">Projects</a>
-			<a href="#">About</a>
-		</nav>
-		<main>
-			Content area
-		</main>
 		
 		<view class="share-btn" style="bottom: 33vw; margin-right: 20rpx;">
 			<image  src="../../../static/share.png" mode=""></image>
@@ -263,22 +236,55 @@
 		}
 		.btn-box {
 			width: 100%;
-			.btn {
-				width: 140rpx;
+			.btn-left, .btn-right {
+				display: inline-block;
+				padding: 20rpx;
+				font-size: 28rpx;
+				color: #FFFFFF;
+				position: relative;
+			}
+			.btn-left::before {
+				width: 125rpx;
+				min-height: 40rpx;
 				display: inline-block;
 				border-top-left-radius: 15rpx;
 				border-top-right-radius: 15rpx;
-				background-color: #fc4e48;
+				background-color: #b7b7b7;
 				padding: 20rpx;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transform: scale(1.15, 1.3) perspective(.5em) rotateX(2deg);
+				transform-origin: bottom left;
+				z-index: -1;
+				content: '';
 				text-align: center;
-				font-size: 28rpx;
-				color: #FFFFFF;
-				transform: scale(1.1, 1.3) perspective(.5em) rotateX(2deg);
-				
 			}
-		}
-		.btn-bottom-line {
-			
+			.btn-left:hover::before {
+				background-color: #fc4e48;
+				z-index: 2;
+			}
+			.btn-right::before {
+				width: 125rpx;
+				min-height: 40rpx;
+				display: inline-block;
+				border-top-left-radius: 15rpx;
+				border-top-right-radius: 15rpx;
+				background-color: #b7b7b7;
+				padding: 20rpx;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transform: scale(1.15, 1.3) perspective(.5em) rotateX(2deg);
+				transform-origin: bottom right;
+				z-index: -1;
+				content: '';
+				text-align: center;
+			}
+			.btn-right:hover::before {
+				background-color: #fc4e48;
+				z-index: 2;
+			}
 		}
 		
 		.commodity {
@@ -421,66 +427,6 @@
 			}
 	}
 	
-	
-	nav {
-		position: relative;
-		z-index: 1;
-		padding-left: 1em;
-	}
-	
-	nav > a {
-		position: relative;
-		display: inline-block;
-		padding: .3em 1em 0;
-		color: inherit;
-		text-decoration: none;
-		margin: 0 -.3em;
-	} 
-	
-	nav > a::before,
-	main {
-		border: .1em solid rgba(0,0,0,.4);
-	}
-	
-	nav a::before {
-		content: ''; /* To generate the box */
-		position: absolute;
-		top: 0; right: 0; bottom: 0; left: 0;
-		z-index: -1;
-		border-bottom: none;
-		border-radius: .5em .5em 0 0;
-		background: #ccc linear-gradient(hsla(0,0%,100%,.6), hsla(0,0%,100%,0));
-		box-shadow: 0 .15em white inset;
-		transform: scale(1.1, 1.3) perspective(.5em) rotateX(5deg);
-		transform-origin: bottom;
-	}
-	
-	nav a.selected { z-index: 2;}
-	
-	nav a.selected::before {
-		background-color: #eee;
-		margin-bottom: -.08em;
-	}
-	
-	main {
-		display: block;
-		margin-bottom: 1em;
-		background: #eee;
-		padding: 1em;
-		border-radius: .15em;
-	}
-	
-	nav.left > a::before {
-		transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
-		transform-origin: bottom left;
-	}
-	
-	nav.right { padding-left: 2em; }
-	
-	nav.right > a::before {
-		transform: scale(1.2, 1.3) perspective(.5em) rotateX(5deg);
-		transform-origin: bottom right;
-	}
 	
 	
 	.share-btn {
